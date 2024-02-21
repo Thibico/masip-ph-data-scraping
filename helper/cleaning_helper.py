@@ -32,6 +32,10 @@ class CleaningHelper(object):
   def get_df_columns_list(self):
     return self.current_df.columns.values.tolist()
 
+  def get_dict_from_2cols(self, key_col:str, value_col:str) -> dict:
+    self.get_clean_df()
+    return dict(zip(self.current_df[key_col], self.current_df[value_col]))
+    
   ## Extract selected data
   def extract_matched_data(self, standard_df, left_col, right_col):
     result_df = pd.merge(self.current_df, standard_df, left_on = left_col, right_on = right_col) ## INNER JOIN method - cols will be combined
